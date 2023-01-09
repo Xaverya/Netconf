@@ -1,0 +1,30 @@
+# nano /etc/bind/named.conf.local
+
+include "/etc/bind/rndc.key";
+
+zone "mmz.dmz" {
+        type master;
+        file "/etc/bind/db.mmz.dmz";
+};
+
+zone "mmz.int" {
+        type master;
+        file "/var/cache/bind/db.mmz.int";
+        allow-update {key "rndc-key";};
+};
+
+zone "110.168.192 in-addr.arpa" {
+        type master;
+        file "/var/cache/bind/db.192.168.110";
+        allow-update {key "rndc-key";};
+};
+zone "111.168.192 in-addr.arpa" {
+        type master;
+        file "/etc/bind/db.192.168.111";
+};
+
+
+
+
+
+
